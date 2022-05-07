@@ -14,20 +14,14 @@ app.use(express.static('public'));
                         //Routes/Controllers
 //=============================================================================================
 
-//Index Route - catches GET requests to /products/ and responds with ALL products
+//Index Route - catches GET requests to /products/ and RENDERS ALL products
 app.get('/products/', (req,res) => {
     const context = { products };
     res.render('index.ejs', context);
 })
 
 
-//Show Route - catches GET requests to /products/index/ and respond with a SINGLE product
-        //Create show.ejs
-// app.get('/products/:productIndex', (req,res) => {
-//     const context = {products: product};
-//     res.render(products[req.params.productIndex]);
-// });
-
+//Show Route - catches GET requests to /products/index/ and RENDERS a SINGLE product
 app.get('/products/:id/', (req,res) => {
     let productId = req.params.id
     const context = {
@@ -37,6 +31,12 @@ app.get('/products/:id/', (req,res) => {
     res.render('show.ejs', context)
 })
 
+// 404 Error Catchall -- Put after all other routes!
+
+app.get("/*", (req,res) => {
+    const context = {error: req.error};
+    return res.status(404).render("404", context);
+});
 
 
 
