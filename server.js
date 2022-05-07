@@ -20,6 +20,10 @@ app.get('/products/', (req,res) => {
     res.render('index.ejs', context);
 })
 
+app.get('/products/new', (req,res) => {
+    res.render('new.ejs');
+})
+
 
 //Show Route - catches GET requests to /products/index/ and RENDERS a SINGLE product
 app.get('/products/:id/', (req,res) => {
