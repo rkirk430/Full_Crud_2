@@ -5,19 +5,19 @@ const products = [
       name: 'Berry Kombucha',
       price: 8,
       image:
-        'https://cdn.shopify.com/s/files/1/1297/1509/products/hero1_6de889fb-b540-49e4-b733-3af0baaa7f63_x1440.jpg?v=1571274629',
+        'https://stayhome.store/wp-content/uploads/Health-Ade-Kombucha-Organic-Maca-Berry_clipped_rev_1.jpg',
     },
     {
       name: 'Mango Kombucha',
       price: 11,
       image:
-        'https://cdn.shopify.com/s/files/1/1297/1509/products/HERO_c5b0ec76-ad06-4cc7-a165-6129e11a8ff6_x1440.jpg?v=1571274622',
+        'https://www.instacart.com/image-server/466x466/filters:fill(FFF,true):format(webp)/www.instacart.com/assets/domains/product-image/file/large_25fa225f-df55-4656-a1bd-3d2c3f48d942.jpg',
     },
     {
       name: 'White Peach Kombucha',
       price: 7,
       image:
-        'https://cdn.shopify.com/s/files/1/1297/1509/products/hero1_40030160-f468-4d50-8f30-c8b9733ce84e_x1440.jpg?v=1575020412',
+        'https://cdn.shopify.com/s/files/1/0333/4881/2936/products/RemedyDrinks_PeachKombucha_Front_400x500_crop_center.jpg?v=1645756335',
     },
   ];
 

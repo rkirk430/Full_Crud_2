@@ -30,7 +30,11 @@ app.get('/products/', (req,res) => {
 
 app.get('/products/:id/', (req,res) => {
     let productId = req.params.id
-    res.render('show.ejs', productId)
+    const context = {
+        oneProduct: products[productId],
+        message: "This is the show route"
+    }
+    res.render('show.ejs', context)
 })
 
 

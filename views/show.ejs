@@ -9,29 +9,12 @@
 
         <title>SellItUp</title>
     </head>
-    <body>  
-				<nav class="navbar">
-            <div>
-                <a href="/"> Home </a>
-            </div>
-        </nav>
-
-        <section>
-            <div>
-                <h2 class="title">Product Show</h2>
-            </div>
-        </section>
-
-        <main class="container">
-            <div>
-				<div class="content">
-					<img src="<%= product.image %>" alt="product img" />
-				    <div class="description">
-				        <h3>name: <%= product.name %></h3>
-			            <small>price: $<%= product.price %></small>
-					</div>
-				</div>  
-            </div>
-        </main>
-	</body>
+    <body>
+        <h1>Show Page</h1>
+        <p><%= message %></p>
+        <!-- product object referenced by oneProduct -->
+        <h2><%= oneProduct.name %></h2>
+        <small><%= oneProduct.price %></small>
+        <img class="show-image" src="<%=oneProduct.image%>" alt="<%=oneProduct.name %>"/>
+    </body>
 </html>
