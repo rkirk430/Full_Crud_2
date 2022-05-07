@@ -9,6 +9,15 @@ const products = require('./models/product_model')
 //Application static files configuration
 app.use(express.static('public'));
 
+//=============================================================================================
+                        //Middleware (Put BEFORE Routes)
+//=============================================================================================
+
+app.use((req,res,next) => {
+    console.log(`${req.method} ${req.originalUrl}`);  // Posts URL & HTTP Method for every request we have
+    next();
+});
+
 
 //=============================================================================================
                         //Routes/Controllers
