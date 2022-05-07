@@ -43,6 +43,12 @@ app.get("/*", (req,res) => {
 });
 
 
+// ============================ POST Route =======================================
+
+app.post('/products/', (req,res) => {
+    res.send('hola');  // Click button in /products/new and should return res.send();
+});
+
 
 //http://localhost:5000/products/1
 
