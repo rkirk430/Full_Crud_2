@@ -1,8 +1,10 @@
 const express = require('express');
 const app = express();
 const PORT = 5000;
+app.set ('view engine', 'ejs')
 
-//Temporary Database
+//Simulated Database
+const products = require('./models/product_model')
 
 
 //=============================================================================================
@@ -11,7 +13,7 @@ const PORT = 5000;
 
 //Index Route - catches GET requests to /products/ and responds with ALL products
 app.get('/products/', (req,res) => {
-    const context = { products: products };
+    const context = { products };
     res.render('index.ejs', context);
 })
 

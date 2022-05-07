@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		    <link rel="stylesheet" href="/styles/main.css" />
+        <script src="/scripts/main.js" defer></script>
+
+        <title>SellItUp</title>
+    </head>
+    <body>  
+				<nav class="navbar">
+            <div>
+                <a href="/"> Home </a>
+            </div>
+        </nav>
+
+        <section>
+            <div>
+                <h2 class="title">All Products</h2>
+            </div>
+        </section>
+
+        <main class="container">
+            <div>
+                <% for (let idx = 0; idx < products.length; idx++){ %>
+                    <% const product = products[idx] %>
+                    <div>
+                        <img src = "<%= product.image %>" alt="Placeholder Image" />
+                            <div class>
+                                <h3>
+                                    <a href = "/products/<%= idx %>">
+                                        <%= product.name %>
+                                    </a>
+                                </h3>
+                                <p>$<%= product.price %></p>
+                            </div>
+                    </div>}
+				<% } %>			
+            </div>
+        </main>
+    
+	</body>
+</html>
