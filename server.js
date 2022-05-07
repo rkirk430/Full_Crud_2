@@ -6,6 +6,9 @@ app.set ('view engine', 'ejs')
 //Simulated Database
 const products = require('./models/product_model')
 
+//Application static files configuration
+app.use(express.static('public'));
+
 
 //=============================================================================================
                         //Routes/Controllers
