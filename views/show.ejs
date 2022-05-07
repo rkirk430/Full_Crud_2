@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		    <link rel="stylesheet" href="/styles/main.css" />
+        <script src="/scripts/main.js" defer></script>
+
+        <title>SellItUp</title>
+    </head>
+    <body>  
+				<nav class="navbar">
+            <div>
+                <a href="/"> Home </a>
+            </div>
+        </nav>
+
+        <section>
+            <div>
+                <h2 class="title">Product Show</h2>
+            </div>
+        </section>
+
+        <main class="container">
+            <div>
+				<div class="content">
+					<img src="<%= product.image %>" alt="product img" />
+				    <div class="description">
+				        <h3>name: <%= product.name %></h3>
+			            <small>price: $<%= product.price %></small>
+					</div>
+				</div>  
+            </div>
+        </main>
+	</body>
+</html>

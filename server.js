@@ -22,9 +22,19 @@ app.get('/products/', (req,res) => {
 
 
 //Show Route - catches GET requests to /products/index/ and respond with a SINGLE product
-app.get('/products/:productIndex', (req,res) => {
-    res.send(products[req.params.productIndex]);
-});
+        //Create show.ejs
+// app.get('/products/:productIndex', (req,res) => {
+//     const context = {products: product};
+//     res.render(products[req.params.productIndex]);
+// });
+
+app.get('/products/:id/', (req,res) => {
+    let productId = req.params.id
+    res.render('show.ejs', productId)
+})
+
+
+
 
 //http://localhost:5000/products/1
 
