@@ -43,7 +43,7 @@ router.get('/:id/edit', (req,res)=>{
 router.get('/', (req, res) => {
     // res.send(products)
     const context = { products }
-    res.render('index', context)
+    res.render('index.ejs', context)
 })
 
 

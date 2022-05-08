@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-    <%- include ('partials/head.ejs', { pageName: "Products" } ) %>
+    <%- include ('partials/head.ejs', { pageName: "Products Home" } ) %>
     <body>  
 				<nav class="navbar">
             <div>
@@ -21,7 +21,7 @@
                 <% for (let idx = 0; idx < products.length; idx++){ %>
                     <% const product = products[idx] %>
                     <div>
-                        <img src = "<%= product.image %>" alt="Placeholder Image" />
+                        <img class="card-image" src = "<%= product.image %>" alt="Placeholder Image" />
                             <div class>
                                 <h3>
                                     <a href = "/products/<%= idx %>">
@@ -30,7 +30,7 @@
                                 </h3>
                                 <p>$<%= product.price %></p>
                             </div>
-                    </div>}
+                    </div>
 				<% } %>			
             </div>
         </main>
