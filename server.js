@@ -9,6 +9,9 @@ const products = require('./models/product_model')
 //Application static files configuration
 app.use(express.static('public'));
 
+//Registering the Middleware
+app.use(express.urlencoded({ extended: false }));
+
 //=============================================================================================
                         //Middleware (Put BEFORE Routes)
 //=============================================================================================
