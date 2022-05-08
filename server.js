@@ -12,6 +12,9 @@ app.use(express.static('public'));
 //Registering the Middleware
 app.use(express.urlencoded({ extended: false }));
 
+//Method-override to apply Delete requests
+const methodOverride = require('method-override');
+
 //=============================================================================================
                         //Middleware (Put BEFORE Routes)
 //=============================================================================================
@@ -21,6 +24,8 @@ app.use((req,res,next) => {
     next();
 });
 
+// registering methodOverride will allow us to add a query parameter called _method to our delete form
+app.use(methodOverride('_method'));
 
 //=============================================================================================
                         //Routes/Controllers
@@ -66,6 +71,15 @@ app.post('/products/', (req,res) => {
     products.push(createdProduct)
     // return res.send(`new product created: ${req.body.name}`);
     return res.redirect('/products')
+});
+
+// ============================ Delete Route =======================================
+    // This route will catch DELETE requests to /products/anyValue and after deleting the data..
+    // respond by redirecting the user to the index route
+
+app.delete('/:productId', (req, res) => {
+    products.splice ( req. params.productId, 1);
+    return res.redirect ('/products');
 });
 
 
