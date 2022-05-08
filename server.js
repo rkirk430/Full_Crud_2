@@ -57,8 +57,15 @@ app.get("/*", (req,res) => {
 
 // ============================ POST Route =======================================
 
+    //Posts new product and redirects user to the products page. Lets individuals add their own kombuchas
+
 app.post('/products/', (req,res) => {
-    res.send('hola');  // Click button in /products/new and should return res.send();
+    // console.log(req.body);
+    // res.send('Data Received: Check the terminal after clicking the button');  // Click button in /products/new and should return res.send();
+    const createdProduct = req.body
+    products.push(createdProduct)
+    // return res.send(`new product created: ${req.body.name}`);
+    return res.redirect('/products')
 });
 
 
