@@ -14,17 +14,32 @@ router.get('/new', (req, res) => {
 
 // Products "show" route - GET - one product 
 
-router.get('/:id/', (req, res) => {
-    let productId = req.params.id
+// router.get('/:id/', (req, res) => {
+//     let productId = req.params.id
 
-    const context = {
-        oneProduct: products[productId],
-        message: 'I am the show route',
-        id: productId
+//     const context = {
+//         oneProduct: products[productId],
+//         message: 'I am the show route',
+//         id: productId
+//     }
+//     res.render('show.ejs', context)
+// })
+
+
+// Refactoring the "Show" Route - GET - One Product (Catches GET Requests to /products/index/ with single product)
+
+router.get('/:id', async (req,res,next) => {
+    try {
+        const foundProduct = await db.Product.findById(req,params.id)
+        console.log(foundProduct);
+        const context = { oneProduct: foundProduct }
+        res.render('show.ejs', context)
+    } catch (error) {
+        console.log(error);
+        req.error = error;
+        return next();
     }
-    res.render('show.ejs', context)
 })
-
 
 // Products "edit" route - GET - display an edit form for one product
 
@@ -38,7 +53,7 @@ router.get('/:id/edit', (req,res)=>{
 })
 
 
-// Ref
+
 
 
 // Product "index" route - GET - all products
