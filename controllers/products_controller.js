@@ -7,9 +7,9 @@ const db = require("../models")  // Removed simulated database const products = 
 
 // request http://localhost:4000/products
 
-router.get('/new', (req, res) => {
-    res.render('new.ejs')
-})
+// router.get('/new', (req, res) => {
+//     res.render('new.ejs')
+// })
 
 
 //==================================================================================================================================
@@ -54,14 +54,14 @@ router.get('/:id', async (req,res,next) => {
 
 // Products "edit" route - GET - display an edit form for one product
 
-router.get('/:id/edit', (req,res)=>{
-    const foundProduct = products[req.params.id]
-    const context = {
-        product: foundProduct,
-        id: req.params.id
-    }
-    res.render('edit.ejs', context)
-})
+// router.get('/:id/edit', (req,res)=>{
+//     const foundProduct = products[req.params.id]
+//     const context = {
+//         product: foundProduct,
+//         id: req.params.id
+//     }
+//     res.render('edit.ejs', context)
+// })
 
 
 router.get('/:id/edit', async (req, res, next) => {
@@ -106,7 +106,7 @@ router.get('/', async (req, res, next) => {
 });
 
 //==================================================================================================================================
-//                                  Create Route
+//                                  Create / Post Route
 //==================================================================================================================================
 
 // Products "create" route - POST requests -> request body (new product data)
@@ -162,7 +162,9 @@ router.delete('/:id', async (req, res, next) => {
     }
 })
 
-
+//==================================================================================================================================
+//                                  Update Route
+//==================================================================================================================================
 
 // Products "update" route
 
@@ -172,6 +174,19 @@ router.put('/:id', (req,res)=>{
     res.redirect(`/products/${req.params.id}`)
 
 })
+
+router.put('/:id', async (req, res, next) => {
+    try {
+        const updatedProduct = await db.Product.findByIdAndUpdate(req.params.id, req.body);
+        console.log(updatedProduct);
+        return res.redirect('/products');
+    } catch (error) {
+        console.log(error);
+        req.error = error;
+        return next();
+    }
+})
+
 
 module.exports = router
 
