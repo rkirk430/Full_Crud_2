@@ -5,9 +5,6 @@ app.set ('view engine', 'ejs')
 require('./config/db.connection');
 
 
-const productsController = require('./controllers/products_controller.js');
-app.use('/products', productsController);
-
 
 
 //Application static files configuration
@@ -31,7 +28,8 @@ app.use((req,res,next) => {
 // registering methodOverride will allow us to add a query parameter called _method to our delete form
 app.use(methodOverride('_method'));
 
-
+const productsController = require('./controllers/products_controller.js');
+app.use('/products', productsController);
 
 
 //http://localhost:5000/products/1

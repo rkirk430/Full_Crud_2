@@ -20,20 +20,20 @@ mongoose.connect(connectionStr, () => {
 
 // Step 6: Registers if connection was successful
 
-// mongoose.connnection.on('connected', () => {
-//     console.log(`[${new Date().toLocaleTimeString()}]`)
-// })
+mongoose.connection.on('connected', () => {
+    console.log(`[${new Date().toLocaleTimeString()}]`)
+})
 
 
-// // Step 7: Registers if connection was unsuccessful
-// mongoose.connection.on('error', (error) => {
-//     console.log('MongoDB connection error ', error)
-// })
+// Step 7: Registers if connection was unsuccessful
+mongoose.connection.on('error', (error) => {
+    console.log('MongoDB connection error ', error)
+})
 
 
-// // Step 8: Registers if Disconnecting from MongoDB
-// mongoose.connection.on('disconnected', () => {
-//     console.log('MongoDB disconnected')
-// })
+// Step 8: Registers if Disconnecting from MongoDB
+mongoose.connection.on('disconnected', () => {
+    console.log('MongoDB disconnected')
+})
 
 

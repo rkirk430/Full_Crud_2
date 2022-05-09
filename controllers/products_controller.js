@@ -7,10 +7,77 @@ const db = require("../models")  // Removed simulated database const products = 
 
 // request http://localhost:4000/products
 
-// router.get('/new', (req, res) => {
-//     res.render('new.ejs')
+
+
+
+
+
+
+//==================================================================================================================================
+//                                  Index Route
+//==================================================================================================================================
+
+
+
+// Product "index" route - GET - all products
+
+// router.get('/', (req, res) => {
+//     // res.send(products)
+//     const context = { products }
+//     res.render('index.ejs', context)
 // })
 
+// Refactoring the Product "Index" Route - GET - All Products
+
+router.get('/', async (req, res, next) => {
+    // res.send(products)
+    try {
+        const products = await db.Product.find({});
+        const context = { products }
+        console.log('HERE IS CONTEXT IN THE INDEX ROUTE');
+        console.log(context);
+        res.render('index.ejs', context);
+    } catch (error) {
+        console.log(error);
+        req.error = error;
+        return next();
+    }
+});
+
+// === NEW Route
+
+router.get('/new', (req, res) => {
+    res.render('new.ejs')
+})
+
+//==================================================================================================================================
+//                                  Create / Post Route
+//==================================================================================================================================
+
+// Products "create" route - POST requests -> request body (new product data)
+
+// router.post('/', (req, res) => {
+    
+//     products.push(req.body)
+//     res.redirect('/products')
+
+// })
+
+// Refactoring the "Create" Route - POST requests -> request body(new product data)
+
+router.post('/', async (req, res, next) => {
+    // console.log(req);
+    console.log(req.body);
+    try {
+        const createdProduct = await db.Product.create(req.body)
+        console.log(createdProduct);
+        res.redirect("/products");
+    } catch(error) {
+        console.log(error);
+        req.error = error;
+        return next();
+    }
+})
 
 //==================================================================================================================================
 //                                  Show Route
@@ -36,7 +103,7 @@ const db = require("../models")  // Removed simulated database const products = 
 
 router.get('/:id', async (req,res,next) => {
     try {
-        const foundProduct = await db.Product.findById(req,params.id)
+        const foundProduct = await db.Product.findById(req.params.id)
         console.log(foundProduct);
         const context = { oneProduct: foundProduct }
         res.render('show.ejs', context)
@@ -76,65 +143,6 @@ router.get('/:id/edit', async (req, res, next) => {
     }
 })
 
-//==================================================================================================================================
-//                                  Index Route
-//==================================================================================================================================
-
-
-
-// Product "index" route - GET - all products
-
-// router.get('/', (req, res) => {
-//     // res.send(products)
-//     const context = { products }
-//     res.render('index.ejs', context)
-// })
-
-// Refactoring the Product "Index" Route - GET - All Products
-
-router.get('/', async (req, res, next) => {
-    // res.send(products)
-    try {
-        const products = await db.Product.find({});
-        const context = { products }
-        res.render('index.ejs', context);
-    } catch (error) {
-        console.log(error);
-        req.error = error;
-        return next();
-    }
-});
-
-//==================================================================================================================================
-//                                  Create / Post Route
-//==================================================================================================================================
-
-// Products "create" route - POST requests -> request body (new product data)
-
-// router.post('/', (req, res) => {
-    
-//     products.push(req.body)
-//     res.redirect('/products')
-
-// })
-
-// Refactoring the "Create" Route - POST requests -> request body(new product data)
-
-router.post('/', async (req, res, next) => {
-    console.log(req);
-    console.log(req.body);
-    try {
-        const createdProduct = await db.Product.create(req.body)
-        console.log(createdProduct);
-        res.redirect("/products");
-    } catch(error) {
-        console.log(error);
-        req.error = error;
-        return next();
-    }
-})
-
-
 
 //==================================================================================================================================
 //                                  Delete / Destroy Route
@@ -168,12 +176,12 @@ router.delete('/:id', async (req, res, next) => {
 
 // Products "update" route
 
-router.put('/:id', (req,res)=>{
+// router.put('/:id', (req,res)=>{
   
-    products[req.params.id] = req.body
-    res.redirect(`/products/${req.params.id}`)
+//     products[req.params.id] = req.body
+//     res.redirect(`/products/${req.params.id}`)
 
-})
+// })
 
 router.put('/:id', async (req, res, next) => {
     try {
