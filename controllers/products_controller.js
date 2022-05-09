@@ -38,6 +38,9 @@ router.get('/:id/edit', (req,res)=>{
 })
 
 
+// Ref
+
+
 // Product "index" route - GET - all products
 
 // router.get('/', (req, res) => {
@@ -63,12 +66,31 @@ router.get('/', async (req, res, next) => {
 
 // Products "create" route - POST requests -> request body (new product data)
 
-router.post('/', (req, res) => {
+// router.post('/', (req, res) => {
     
-    products.push(req.body)
-    res.redirect('/products')
+//     products.push(req.body)
+//     res.redirect('/products')
 
+// })
+
+// Refactoring the "Create" Route - POST requests -> request body(new product data)
+
+router.post('/', async (req, res, next) => {
+    console.log(req);
+    console.log(req.body);
+    try {
+        const createdProduct = await db.Product.create(req.body)
+        console.log(createdProduct);
+        res.redirect("/products");
+    } catch(error) {
+        console.log(error);
+        req.error = error;
+        return next();
+    }
 })
+
+
+
 
 
 // Products "destroy" route
