@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const PORT = 5000;
 app.set ('view engine', 'ejs')
+require('./config/db.connection');
 
 
 const productsController = require('./controllers/products_controller.js');
