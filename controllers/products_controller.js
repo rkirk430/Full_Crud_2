@@ -39,7 +39,7 @@ router.get('/:id', async (req,res,next) => {
         req.error = error;
         return next();
     }
-})
+});
 
 // Products "edit" route - GET - display an edit form for one product
 
@@ -52,7 +52,9 @@ router.get('/:id/edit', (req,res)=>{
     res.render('edit.ejs', context)
 })
 
-
+//==================================================================================================================================
+//                                  Index Route
+//==================================================================================================================================
 
 
 
@@ -78,6 +80,10 @@ router.get('/', async (req, res, next) => {
         return next();
     }
 });
+
+//==================================================================================================================================
+//                                  Create Route
+//==================================================================================================================================
 
 // Products "create" route - POST requests -> request body (new product data)
 
@@ -106,16 +112,31 @@ router.post('/', async (req, res, next) => {
 
 
 
-
+//==================================================================================================================================
+//                                  Delete / Destroy Route
+//==================================================================================================================================
 
 // Products "destroy" route
 
-router.delete('/:id', (req,res)=>{
+// router.delete('/:id', (req,res)=>{
 
-    products.splice(req.params.id , 1 )
-    res.redirect('/products')
+//     products.splice(req.params.id , 1 )
+//     res.redirect('/products')
+// })
+
+//Refactoring Delete route to "Destroy"
+
+router.delete('/:id', async (req, res, next) => {
+    try {
+        const deletedProduct = await db.Product.findByIdAndDelete(req.params.id);
+        console.log(deletedProduct);
+        res.redirect('/products');
+    } catch(error) {
+        console.log(error);
+        req.error = error;
+        return next();
+    }
 })
-
 
 // Products "update" route
 

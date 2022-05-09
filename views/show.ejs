@@ -9,7 +9,7 @@
         <small><%= oneProduct.price %></small>
         <img class="show-image" src="<%=oneProduct.image%>" alt="<%=oneProduct.name %>"/>
         <div>
-            <a href ="/products/<%=id%>/edit"> Edit <%= oneProduct.name %> Listing</a>
+            <a href ="/products/<%= oneProduct._id %>/edit"> Edit <%= oneProduct.name %> Listing</a>
         </div>
     </body>
 </html>
