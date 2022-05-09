@@ -2,8 +2,8 @@
 
 const express = require('express')
 const router = express.Router()
-//Simulated Database
-const products = require('../models/product_model')
+const db = require("../models")  // Removed simulated database const products = require('../models/Product')
+
 
 // request http://localhost:4000/products
 
@@ -40,12 +40,26 @@ router.get('/:id/edit', (req,res)=>{
 
 // Product "index" route - GET - all products
 
-router.get('/', (req, res) => {
-    // res.send(products)
-    const context = { products }
-    res.render('index.ejs', context)
-})
+// router.get('/', (req, res) => {
+//     // res.send(products)
+//     const context = { products }
+//     res.render('index.ejs', context)
+// })
 
+// Refactoring the Product "Index" Route - GET - All Products
+
+router.get('/', async (req, res, next) => {
+    // res.send(products)
+    try {
+        const products = await db.Product.find({});
+        const context = { products }
+        res.render('index.ejs', context);
+    } catch (error) {
+        console.log(error);
+        req.error = error;
+        return next();
+    }
+});
 
 // Products "create" route - POST requests -> request body (new product data)
 
