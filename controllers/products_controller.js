@@ -162,6 +162,7 @@ router.get('/:id/edit', async (req, res, next) => {
 router.delete('/:id', async (req, res, next) => {
     try {
         const deletedProduct = await db.Product.findByIdAndDelete(req.params.id);
+
         console.log(deletedProduct);
         res.redirect('/products');
     } catch(error) {
