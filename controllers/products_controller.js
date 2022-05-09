@@ -12,6 +12,12 @@ router.get('/new', (req, res) => {
 })
 
 
+//==================================================================================================================================
+//                                  Show Route
+//==================================================================================================================================
+
+
+
 // Products "show" route - GET - one product 
 
 // router.get('/:id/', (req, res) => {
@@ -41,6 +47,11 @@ router.get('/:id', async (req,res,next) => {
     }
 });
 
+//==================================================================================================================================
+//                                  Edit Route
+//==================================================================================================================================
+
+
 // Products "edit" route - GET - display an edit form for one product
 
 router.get('/:id/edit', (req,res)=>{
@@ -50,6 +61,19 @@ router.get('/:id/edit', (req,res)=>{
         id: req.params.id
     }
     res.render('edit.ejs', context)
+})
+
+
+router.get('/:id/edit', async (req, res, next) => {
+    try {
+        const updatedProduct = await db.Product.findById(req.params.id);
+        console.log(updatedProduct);
+        return res.render('edit.ejs'), { product: updatedProduct }
+    } catch (error) {
+        console.log(error);
+        req.error = error;
+        return next();
+    }
 })
 
 //==================================================================================================================================
@@ -137,6 +161,8 @@ router.delete('/:id', async (req, res, next) => {
         return next();
     }
 })
+
+
 
 // Products "update" route
 
