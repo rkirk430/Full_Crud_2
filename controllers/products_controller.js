@@ -134,8 +134,9 @@ router.get('/:id', async (req,res,next) => {
 router.get('/:id/edit', async (req, res, next) => {
     try {
         const updatedProduct = await db.Product.findById(req.params.id);
+
         console.log(updatedProduct);
-        return res.render('edit.ejs'), { product: updatedProduct }
+        return res.render('edit.ejs', { product: updatedProduct })
     } catch (error) {
         console.log(error);
         req.error = error;
